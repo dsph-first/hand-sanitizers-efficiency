@@ -1,3 +1,9 @@
+"""
+COMMENT ABOUT METHOD
+pe means "paired-end" meaning the trimmer will both take data from 5' to 3' and 3' to 5'.
+This is probably not right for nanopore since it is single strand
+"""
+
 rule trimmomatic_pe:
     input:
         get_input_files
