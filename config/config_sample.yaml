@@ -1,0 +1,21 @@
+---
+## General Workflow Parameters:
+samples: "../resources/samples.tsv"
+
+# Name of the Workflow:
+workflow: "workflow-hand-sanitizers-efficiency"
+
+# Repository URL:
+repo: "***"
+
+## Workflow-specific Parameters:
+
+# NCBI Credentials
+ncbi_user_email: "***"
+
+data_location: "data/"
+output_location: "output/"
+log_location: "logs/"
+
+# Kraken
+kraken_db: "/path/to/kraken/database"

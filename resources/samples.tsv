@@ -1,0 +1,4 @@
+samples	init_sample	result_sample
+student_x1	./init_samples/student_x1.fastq.gz	./result_samples/student_x1.fastq.gz
+student_x2	./init_samples/student_x2.fastq.gz	./result_samples/student_x2.fastq.gz
+student_x3	./init_samples/student_x3.fastq.gz	./result_samples/student_x3.fastq.gz
