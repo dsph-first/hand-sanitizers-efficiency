@@ -1,0 +1,9 @@
+import read_config
+
+config = read_config.get_config()
+
+input_folder = config["raw_data_location"]
+
+command = [
+    "fastqc", "-threads", "20", "*.fastq.gz"
+]
