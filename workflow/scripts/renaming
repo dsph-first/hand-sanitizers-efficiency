@@ -1,0 +1,35 @@
+import os
+import subprocess
+import read_config
+
+config = read_config.get_config()
+
+input_folder = config["mapped_data_location"]
+output_folder = config["mapped_data_location"]
+
+# Ensure the folder paths end with a slash
+if not input_folder.endswith('/'):
+    input_folder += '/'
+if not output_folder.endswith('/'):
+    output_folder += '/'
+
+# Loop through the range and rename files
+# TODO
+for i in range(6613, 6732):
+    # Construct full paths for source files and destination files
+    source_file_1 = f"{input_folder}filtered_reads{i}_.fastq.1.gz"
+    dest_file_1 = f"{input_folder}filtered_reads{i}_1.fastq.gz"
+
+    source_file_2 = f"{input_folder}filtered_reads{i}_.fastq.2.gz"
+    dest_file_2 = f"{input_folder}filtered_reads{i}_2.fastq.gz"
+
+    # Check if the source files exist before renaming
+    if os.path.exists(source_file_1):
+        os.rename(source_file_1, dest_file_1)
+    else:
+        print(f"File {source_file_1} not found.")
+
+    if os.path.exists(source_file_2):
+        os.rename(source_file_2, dest_file_2)
+    else:
+        print(f"File {source_file_2} not found.")

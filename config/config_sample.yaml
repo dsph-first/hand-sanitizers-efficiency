@@ -19,3 +19,9 @@ log_location: "logs/"
 
 # Kraken
 kraken_db: "/path/to/kraken/database"
+
+raw_data_location: "/path_to/raw_data/"
+
+# Mapping (bowtie2)
+trimmed_data_location: "/path_to/trimmed_data/"
+mapped_data_location: "/path_to/mapped_data/"

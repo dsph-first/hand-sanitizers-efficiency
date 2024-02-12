@@ -76,6 +76,19 @@ git clone https://github.com/dsph-first/hand-sanitizers-efficiency.git
 
 ### Usage
 
+##### DATA
+
+[Dummy data](https://www.ebi.ac.uk/ena/browser/view/PRJNA687773)
+
+**Why these test data are suitable:**
+
+1. The nature of the data. During the project, the bacterial community on the human skin surface before and after the use of sanitizer will be investigated. The test data contain information about the human gut microbiota (i.e., the bacterial community of the gut), which are collected for two groups of people: healthy individuals and those with ASD (Autism Spectrum Disorder).
+2. The type of data used for sequencing. It can be of two kinds: whole-genome data and 16S amplicons. For your data, 16S amplicons will be used, due to the information indicated in your sequencer. The test data are also 16S amplicons, which is crucial for the task at hand.
+3. The final task is to compare the composition of the bacterial community before and after the application of the sanitizer. That means there should be the ability to divide the samples into two clear groups. For the test data, these groups will be the sick (patients with illnesses) and healthy patients.
+4. The volume of data. The test data have many samples, which will allow for a full exploration and evaluation of the methods used.
+
+---
+
 1. First QC with `FASTQC`
 
 Quality control is carried out using the FastQC program. As a result of the program,

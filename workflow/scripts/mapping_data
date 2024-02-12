@@ -1,0 +1,41 @@
+import os
+import subprocess
+import read_config
+
+config = read_config.get_config()
+
+input_folder = config["trimmed_data_location"]
+output_folder = config["mapped_data_location"]
+
+# Generate file names for analysis
+files_to_analyze1 = [
+    f"paired_SRR1330{i}_1.fastq.gz" for i in range(6613, 6732)]
+files_to_analyze2 = [
+    f"paired_SRR1330{i}_2.fastq.gz" for i in range(6613, 6732)]
+
+for i in range(len(files_to_analyze1)):
+    file1 = files_to_analyze1[i]
+    file2 = files_to_analyze2[i]
+
+    input_file_path1 = os.path.join(input_folder, file1)
+    input_file_path2 = os.path.join(input_folder, file2)
+
+    # Create a unique output directory for each iteration
+    # fastq.gz files contain unaligned areas
+    output_file_path = os.path.join(
+        output_folder, f"filtered_reads{i+6613}_.fastq.gz")
+    # sam files contain full results of mapping
+    output_file_path1 = os.path.join(
+        output_folder+"/sam/", f"output_sam_{i+6613}.sam")
+
+# you should have human_index on your server
+    command = [
+        "bowtie2",
+        "-x",
+        "human_index",
+        "-1", input_file_path1,
+        "-2", input_file_path2,
+        "-S", output_file_path1,
+        "--un-conc-gz", output_file_path,
+        "--threads", "10"]
+    subprocess.run(command)
