@@ -1,29 +1,58 @@
-import os
-from snakemake.remote.NCBI import RemoteProvider as NCBIRemoteProvider
+#Snakefile
 
-min_version("6.7.0")
-
+from snakemake.io import glob_wildcards
+import sys
 configfile: "../config/config.yaml"
 
-data_dir = config["data_location"]
-output_dir = config["output_location"]
-log_dir = config["log_location"]
-
-# read samples paths from config
-include: "rules/common.smk"
+min_len = config["min_len"]
+qc = config["qc"]
 
 
 rule all:
     input:
-        # ncbi_download rule
-        expand("./example_samples/{sample}_fastqc.html", sample=SAMPLES),
+        expand("result/reports/{sample}_report.txt", folder=config["folder"],
+               sample=glob_wildcards(config["folder"] + "/{sample}.fastq")[0]),
+        expand("result/reports/{sample}_result.txt", folder=config["folder"],
+               sample=glob_wildcards(config["folder"] + "/{sample}.fastq")[0])
 
-#################################################################
-###################### rule definitions #########################
-#################################################################
 
-include: "rules/ncbi_download.smk"
 
-include: "rules/quality_control.smk"
+rule porechop:
+    input:
+        files=lambda wildcards: config['folder'] + "/{sample}.fastq"
+    output:
+        "result/{sample}_trimmed.fastq"
+    conda:
+        "envs/porechop.yaml"
+    shell:
+        "porechop -i {input.files} -o {output}"
 
-include: "rules/trimming.smk"
+
+
+rule nanofilt:
+    input:
+        "result/{sample}_trimmed.fastq"
+    output:
+        "result/{sample}_filtered.fastq"
+    params:
+        min_len=int(config["min_len"]),
+        qc=int(config["qc"])
+    conda:
+        "envs/nanofilt.yaml"
+    shell:
+        "NanoFilt -l {params.min_len} -q {params.qc} < {input} > {output}"
+
+
+rule centrifuge:
+    input:
+        "result/{sample}_filtered.fastq"
+    output:
+        report="result/reports/{sample}_report.txt",
+        result="result/reports/{sample}_result.txt"
+    params:
+        centrifuge_db=config["centrifuge_db"]
+    conda:
+        "envs/centrifuge.yaml"
+    shell:
+        "centrifuge -x {params.centrifuge_db} -U {input} -p 16 --report-file {output.report} -S {output.result}"
+
