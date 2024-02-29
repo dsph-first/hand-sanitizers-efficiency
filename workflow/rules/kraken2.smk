@@ -43,6 +43,6 @@ rule kraken2:
         --db {params.database} \
         --classified-out {output.classified} \
         --unclassified-out {output.unclassified} \
-        --output {output.report} \
+        --report {output.report} \
         {input}
         """
