@@ -15,7 +15,8 @@ The file can be found in the hand sanitizer group on MS Teams (fingerprinting.xl
 
 
 ## How to use
-The necessary information about how to use this IPYNB file is included in the file itself. 
+The necessary information about how to use this IPYNB file is included in the file itself. Code for statistical analysis is provided
+in the statistical_analysis.py file. 
 
 ## Screenshots
 
