@@ -23,7 +23,7 @@ The necessary information about how to use this IPYNB file is included in the fi
 
 Example output of the barplot:
 
-![Barplot](https://github.com/dsph-first/hand-sanitizers-efficiency/blob/agar-plate-analysis/Plate_analysis/Fingerpad/barplot.png)
+![Barplot](https://github.com/dsph-first/hand-sanitizers-efficiency/blob/agar-plate-analysis/plate-analysis/fingerpad/barplot.png)
 
 
 ## References
