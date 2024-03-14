@@ -18,7 +18,7 @@ output_location: "output/"
 log_location: "logs/"
 
 # Kraken
-kraken_db: "/path/to/kraken/database"
+kraken_db: "/students/2023-2024/master/hand_sanitizer/kraken2/GreenGenes"
 
 raw_data_location: "/path_to/raw_data/"
 
