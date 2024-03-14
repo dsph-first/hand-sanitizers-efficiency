@@ -26,23 +26,19 @@ tool_publication:
 """
 
 rule kraken2:
-    ## TODO inputs and outputs need to be specified
     input:
-        "{sample.fastq}"
+        "{sample}.fastq"
     output:
-        classified="",
-        unclassified="",
-        report=""
+        report="{sample}.kreport"
     params:
         database=config["kraken_db"]
     conda: "../envs/kraken2.yaml"
-    threads: 32
+    threads: 4
     shell:
         """kraken2 \
         --threads {threads} \
         --db {params.database} \
-        --classified-out {output.classified} \
-        --unclassified-out {output.unclassified} \
+        --use-names \
         --report {output.report} \
         {input}
         """
