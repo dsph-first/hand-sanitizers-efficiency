@@ -32,7 +32,7 @@ rule kraken2:
         report="{sample}.kreport"
     params:
         database=config["kraken_db"]
-    conda: "../envs/kraken2.yaml"
+    conda: "kraken2"
     threads: 4
     shell:
         """kraken2 \
