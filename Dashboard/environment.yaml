@@ -1,0 +1,24 @@
+name: dashboard
+
+channels:
+  - conda-forge
+dependencies:
+  - bokeh>=3.3.1
+  - geojson
+  - geopandas
+  - notebook
+  - pandas
+  - numpy
+  - plotly
+  - dash_bio
+  - jupyter_dash
+  - panel
+  - holoviews 
+  - hvplot
+  - dash
+  - dash_bootstrap_components
+  - dash_bootstrap_templates
+  - dash_ag_grid
+  - openpyxl
+
+  
