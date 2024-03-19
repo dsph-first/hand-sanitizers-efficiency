@@ -21,6 +21,21 @@ The paths to the datasets are contained in a `config.yaml` file. Please make sur
 printing experiments data. This datasets is in `xls` format. Download the `fingerprinting.xlsx` file from the team and put this file into the `data` folder.
 
 # Files:
+Apart from the configuration files,there are other files which are required for the dashboard. These files are described below:
+`app.py`: This files holds the initilization of dash app.
+`index.py`: This contains the whole layout of dashboard. 
+`navigation_bar.py`: This file contains the layout of navigation bar.
+`data_process.py`: This file load the data and process it for further analyzation. 
+`counting_colony.py`: This file shows the visualization for colony counting test. It's the layout for colony counting tab.
+`disk_diffusion.py`:  This file shows the visualization for disk diffusion test.It's the layout for disk diffusion tab. 
+`full_workingindex.py`: This is the full working file of index.py before adding others tab 
+`rs_seq.py`: This file shows the visualization for16 rs dna sequencing.It's the layout for that tab.
+`statistics_analysis.py`: This files do all the statistical analysis for dashboard.
+`user_perceptions.py`: This file shows the visualization for user perceptions. It's the layout for user perceptions tab.
+
+# Run :
+Go to the `dashboard` environment and run `python3 index.py`. There will be a running dash app in the localhost.
+
 
 
 
