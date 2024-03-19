@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 
 
 dbc_css = ("https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2/dbc.min.css")
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc_css],assets_folder="/homes/rmeshita/Desktop/Dashboard_for_project/app/assets")
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc_css])
 
 server = app.server
 
