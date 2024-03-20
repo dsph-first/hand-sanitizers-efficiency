@@ -2,30 +2,32 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
-tab3 = dbc.Tab(
+
+
+disk_diffuision_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For 16RS Sequencing Test"), className="text-center"),
-                # dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="bar_graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
-                # ),
-                # dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
-                # ),
+                html.H4(("Sample Distribution For disk Difuision Test"),
+                        className="text-center"),
+                dbc.Col(
+                    #     dbc.Card(
+                    #         dcc.Graph(
+                    #             id="bar_graph",
+                    #             figure={},
+                    #         )
+                    #     ),
+                    #     lg=6,
+                    # ),
+                    # dbc.Col(
+                    #     dbc.Card(
+                    #         dcc.Graph(
+                    #             id="graph",
+                    #             figure={},
+                    #         )
+                    #     ),
+                    #     lg=6,
+                ),
             ]
         ),
         dbc.Row(
@@ -64,7 +66,5 @@ tab3 = dbc.Tab(
             ]
         ),
     ],
-     label ='16 rs Sequencing',
-     id = 'sequencing',
+    label='Disk Diffusion Test'
 )
-

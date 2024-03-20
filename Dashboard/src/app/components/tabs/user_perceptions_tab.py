@@ -4,30 +4,32 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
-tab4 = dbc.Tab(
+
+
+user_perceptions_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For User Perception Test"), className="text-center"),
+                html.H4(("Sample Distribution For User Perception Test"),
+                        className="text-center"),
                 dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="bar_graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
-                # ),
-                # dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
-                 ),
+                    #     dbc.Card(
+                    #         dcc.Graph(
+                    #             id="bar_graph",
+                    #             figure={},
+                    #         )
+                    #     ),
+                    #     lg=6,
+                    # ),
+                    # dbc.Col(
+                    #     dbc.Card(
+                    #         dcc.Graph(
+                    #             id="graph",
+                    #             figure={},
+                    #         )
+                    #     ),
+                    #     lg=6,
+                ),
             ]
         ),
         dbc.Row(
@@ -66,7 +68,6 @@ tab4 = dbc.Tab(
             ]
         ),
     ],
-     label ='User perception', 
-     id ='user_perception'
+    label='User perception',
+    id='user_perception'
 )
-

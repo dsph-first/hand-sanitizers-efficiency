@@ -1,2 +1,6 @@
+# Snakemake Pipeline
 workflow/.snakemake
 config/config.yaml
+# Python Dashboard
+Dashboard/data/fingerprinting.xlsx
+__pycache__/

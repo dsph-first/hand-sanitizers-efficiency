@@ -1,0 +1,2 @@
+data_path: "../data/fingerprinting.xlsx"
+supported_sanitizers: ["Sagrotan"]

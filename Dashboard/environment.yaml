@@ -10,15 +10,8 @@ dependencies:
   - pandas
   - numpy
   - plotly
-  - dash_bio
-  - jupyter_dash
   - panel
-  - holoviews 
+  - holoviews
   - hvplot
   - dash
-  - dash_bootstrap_components
-  - dash_bootstrap_templates
-  - dash_ag_grid
   - openpyxl
-
-  
