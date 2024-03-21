@@ -2,13 +2,14 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
-tab1 = dbc.Tab(
-   
+
+
+counting_colony_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For counting colony Test"), className="text-center"),
+                html.H4(("Sample Distribution For counting colony Test"),
+                        className="text-center"),
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(
@@ -65,6 +66,5 @@ tab1 = dbc.Tab(
             ]
         ),
     ],
-    label ='Counting Colony'
+    label='Counting Colony'
 )
-

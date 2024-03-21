@@ -2,29 +2,31 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
-tab2 = dbc.Tab(
+
+
+disk_diffusion_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For disk Difuision Test"), className="text-center"),
+                html.H4(("Sample Distribution For disk Diffusion Test"),
+                        className="text-center"),
                 dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="bar_graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
-                # ),
-                # dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
+                    #     dbc.Card(
+                    #         dcc.Graph(
+                    #             id="bar_graph",
+                    #             figure={},
+                    #         )
+                    #     ),
+                    #     lg=6,
+                    # ),
+                    # dbc.Col(
+                    #     dbc.Card(
+                    #         dcc.Graph(
+                    #             id="graph",
+                    #             figure={},
+                    #         )
+                    #     ),
+                    #     lg=6,
                 ),
             ]
         ),
@@ -64,6 +66,5 @@ tab2 = dbc.Tab(
             ]
         ),
     ],
-     label ='Disk Diffusion Test'
+    label='Disk Diffusion Test'
 )
-
