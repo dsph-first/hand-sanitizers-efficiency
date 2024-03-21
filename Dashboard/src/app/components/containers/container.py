@@ -1,11 +1,7 @@
-from dash import dash, html, Input, Output, callback, Patch, clientside_callback, dcc
+from dash import html, dcc
 import dash_bootstrap_components as dbc
-import app.components.nav_bars.navigation_bar as navig_bar
 
-
-import app.modules.data_processing as dp
-import app.modules.statistics_analysis as st
-from config.config import hand_sanitizers_list
+from config.config import SANITIZERS
 
 
 initial_paragraph_content = dbc.Container(
@@ -49,8 +45,9 @@ hs_dropdown = html.Div(
             id="hand_sanitizer",
             options=[
                 {"label": hand_sanitizers, "value": hand_sanitizers}
-                for hand_sanitizers in hand_sanitizers_list
+                for hand_sanitizers in SANITIZERS
             ],
+            # value=ConfigInstance.sanitizers[0]
         ),
     ]
 )

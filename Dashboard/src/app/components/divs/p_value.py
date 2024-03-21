@@ -2,7 +2,7 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import dash_bootstrap_components as dbc
 
 
-def get_p_value_div_higher(selected_option, stat_value, p_value):
+def get_p_value_higher_div(selected_option, stat_value, p_value):
     return html.Div(
         dbc.Card(
             [
@@ -33,7 +33,7 @@ def get_p_value_div_higher(selected_option, stat_value, p_value):
     )
 
 
-def get_p_value_div_less(selected_option, stat_value, p_value):
+def get_p_value_less_div(selected_option, stat_value, p_value):
     return html.Div(
         html.Br(),
         dbc.Card(

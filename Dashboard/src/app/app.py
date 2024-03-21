@@ -25,14 +25,15 @@ class HandSanitizerApplication:
 
     # ========= Public functions =========
 
+    def run(self):
+        self.dash_app.run_server(debug=True, use_reloader=True)
+
     def get_df(self) -> pd.DataFrame:
         return self._df
 
     def get_df_for(self, sanitizer_name) -> pd.DataFrame:
         if self.__is_sanitizer_exists(sanitizer_name) != True:
             return None
-
-        print(self._df[self._df['HS'] == sanitizer_name])
         return self._df[self._df['HS'] == sanitizer_name]
 
     def set_df(self, new_df):
@@ -44,8 +45,8 @@ class HandSanitizerApplication:
             return None
         pass
 
-    def run(self):
-        self.dash_app.run_server(debug=True, use_reloader=True)
+    def calculate_stats_for_model(self, method_name):
+        return self.__calculate_stats(method_name)
 
     def get_two_sample_ttest(self):
         self.__calculate_stats('Two-sample t-test')
@@ -66,16 +67,4 @@ class HandSanitizerApplication:
         self.dash_app.layout = basic_layout
 
     def __calculate_stats(self, stat_model_name):
-        stat_value, p_value = stat_analysis(stat_model_name, self._df)
-        print("STATS: ", stat_value, p_value)
-        if stat_value == None or p_value == None:
-            return
-        if p_value > 0.05:
-            p_value = "{0:.4f}".format(p_value)
-            stat_value = "{0:.4f}".format(stat_value)
-            print(">0.05")
-        #  return get_p_value_div_higher(selected_option, stat_value, p_value)
-        if p_value < 0.05:
-            p_value = "{0:.2f}".format(p_value)
-            stat_value = str(stat_value)
-        print("<0.05")
+        return stat_analysis(stat_model_name, self._df)

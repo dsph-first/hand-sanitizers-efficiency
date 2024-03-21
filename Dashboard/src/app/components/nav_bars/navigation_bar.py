@@ -1,8 +1,9 @@
 """ This module is for the navigation bar we have for the dashboard"""
 
-from dash import dash, html, Input, Output, callback, Patch, clientside_callback, State
+from dash import html, Input, Output, callback, State
 import dash_bootstrap_components as dbc
 
+# TODO
 IMG_SOURCE = 'assets/logo.jpg'
 
 navbar = dbc.Navbar(
