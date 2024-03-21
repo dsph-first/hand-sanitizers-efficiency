@@ -13,15 +13,6 @@ from app.components.divs.p_value import get_p_value_higher_div, get_p_value_less
 global HandSanitizerAppInstance
 
 
-def calculate_handle_sanitzer_stats(sanitizer_name):
-    print(
-        f'calculate_handle_sanitzer_stats::sanitizer: {sanitizer_name}'
-    )
-    # log = logging.Logger(level="DEBUG")
-    # log.info(
-    #     f'calculate_handle_sanitzer_stats::sanitizer: ${sanitizer_name}'
-    # )
-
 
 @callback(
     Output("content-container", "children"), [Input("radio-selector", "value")]

@@ -4,11 +4,11 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 
-disk_diffuision_tab = dbc.Tab(
+disk_diffusion_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For disk Difuision Test"),
+                html.H4(("Sample Distribution For disk Diffusion Test"),
                         className="text-center"),
                 dbc.Col(
                     #     dbc.Card(
