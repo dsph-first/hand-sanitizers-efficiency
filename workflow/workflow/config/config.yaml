@@ -1,0 +1,25 @@
+samples: "/homes/jgray/Documents/hand-sanitizers-efficiency/workflow/test_workflow_james/resources/samples.txt"
+project_path: "/students/2023-2024/master/hand_sanitizer"
+raw_reads: "/skin_16S_minion_data_fastq"
+
+# merge_fastq_script
+concatted_files: "/concat_fastq"
+
+# PycoQC
+pycoqc_conda: "pycoQC"
+pycoqc_report_name: "Hand_sanitizer_16s_DNA"
+sequencing_summary: "/skin_16S_minion_data_fastq/sequencing_summary.txt"
+pycoqc_output_directory: /pycoQC
+
+# Kraken
+kraken_conda: "kraken2"
+kraken_db: "/kraken2/GreenGenes"
+kraken_reports: "/kraken2/reports"
+
+# Bracken
+bracken_conda: "kraken2"
+bracken_reports: "/bracken/reports"
+
+# Krona
+krona_conda: "krona"
+krona_reports: "/krona/reports"

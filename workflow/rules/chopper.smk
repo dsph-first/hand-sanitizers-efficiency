@@ -1,4 +1,3 @@
-from os.path import join
 """Chopper rule
 Filtering on quality and/or read length, and optional
 trimming after passing filters. Reads from stdin,
