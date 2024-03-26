@@ -1,15 +1,16 @@
 from scipy.stats import ttest_ind, mannwhitneyu, anderson
 import pandas as pd
 
-def normality_check(data_frame):
+
+def normality_check(data_frame=None):
     """_summary_
 
     Args:
-        data_frame (pandas dataframe): A handsanitizer  or control dataframe which we want to check 
+        data_frame (pandas dataframe): A handsanitizer  or control dataframe which we want to check
                                      which distribution it follows.
     Return:
     stat_model_name (string) : Returns a statistical model name based on p_value of the Anderson Darling normality
-                               test 
+                               test
     """
     print(data_frame)
     treated, control = get_treated_control_df(data_frame)
@@ -18,12 +19,10 @@ def normality_check(data_frame):
     if (res_treated.statistic and res_control.statistic) > 0.05:
         stat_model_name = 'Mann-Whitney U'
         return stat_model_name
-    
+
     if (res_treated.statistic and res_control.statistic) < 0.05:
         stat_model_name = 'Two-sample t-test'
         return stat_model_name
-
-
 
 
 def stat_analysis(stat_model_name=None, data_frame=None):
@@ -52,6 +51,7 @@ def stat_analysis(stat_model_name=None, data_frame=None):
             treated['Treated'], control['Control'])
         return u_statistical_value, p_value
 
+
 def get_treated_control_df(data_frame):
     """_summary_
 
@@ -69,4 +69,4 @@ def get_treated_control_df(data_frame):
     control = data_frame[data_frame['Sample_type'] == 'Control'].iloc[:, :6].T
     control.rename(columns={1: 'Control'}, inplace=True)
 
-    return treated,control
+    return treated, control
