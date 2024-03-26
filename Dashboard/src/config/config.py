@@ -11,7 +11,6 @@ class Config:
             return None
         self._path = path
         self.__read_config()
-        # self._config =
         self.sanitizers = self._config['supported_sanitizers']
         self._init_df = pd.read_excel(self._config['data_path'])
 

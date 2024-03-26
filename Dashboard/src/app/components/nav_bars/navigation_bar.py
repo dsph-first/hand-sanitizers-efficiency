@@ -2,16 +2,19 @@
 
 from dash import html, Input, Output, callback, State
 import dash_bootstrap_components as dbc
+from index import HandSanitizerAppInstance
+import os
 
 # TODO
-IMG_SOURCE = 'assets/logo.jpg'
-
+# need to get the assest url for showing any pictures in the dash
+# this also add circular error
+url = HandSanitizerAppInstance.dash_app.get_asset_url()
 navbar = dbc.Navbar(
     dbc.Container(
         [
             dbc.Row(
                 [
-                    dbc.Col(html.Img(src=IMG_SOURCE, height='30px')),
+                    dbc.Col(html.Img(src=url, height='30px')),
                     dbc.Col(dbc.NavbarBrand(
                         'HandSanitizer', className='mr-auto')),
                 ],

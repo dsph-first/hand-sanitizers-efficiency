@@ -3,6 +3,9 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
 
+# need to get the model name from the appInstance
+# this gives circular dependency error
+get_stat_model ='Mann-Whitney U'
 
 counting_colony_tab = dbc.Tab(
     [
@@ -41,12 +44,8 @@ counting_colony_tab = dbc.Tab(
                                     id="radio-selector",
                                     options=[
                                         {
-                                            "label": [html.Span("Two-sample t-test")],
-                                            "value": "Two-sample t-test",
-                                        },
-                                        {
-                                            "label": "Mann-Whitney U",
-                                            "value": "Mann-Whitney U",
+                                            "label": [html.Span(get_stat_model)],
+                                            "value": get_stat_model,
                                         },
                                     ],
                                     value="",

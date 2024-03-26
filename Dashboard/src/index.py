@@ -5,6 +5,7 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import plotly.express as px
 import pandas as pd
 import logging
+from scipy.stats import sem
 
 from app.app import HandSanitizerApplication
 from config.config import Config
@@ -12,6 +13,7 @@ from app.components.divs.p_value import get_p_value_higher_div, get_p_value_less
 
 global HandSanitizerAppInstance
 
+global DF
 
 
 @callback(
@@ -57,6 +59,8 @@ def update(hand_sanitizer):
     fig = px.bar()
     if hand_sanitizer != None:
         df_result = HandSanitizerAppInstance.get_df_for(hand_sanitizer)
+        # DF= df_result
+        DF= HandSanitizerAppInstance.check_distribution()
         fig = px.bar(
             df_result,
             x="HS",
@@ -65,8 +69,7 @@ def update(hand_sanitizer):
             barmode="group",
             labels={"HS": "Hand Sanitizer", "count": "Count"},
             color_discrete_sequence=["#225ea8", "#41b6c4"],
-            error_y="SEM_mean",
-            error_y_minus="SEM_mean",
+            error_y=[sem(df_result.iloc[0:1,:6].values.tolist(), axis=None, ddof=0),sem(df_result.iloc[1,:6].values.tolist(), axis=None, ddof=0)],
         )
 
         fig.update_layout(

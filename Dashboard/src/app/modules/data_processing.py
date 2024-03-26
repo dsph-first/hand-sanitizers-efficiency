@@ -10,8 +10,9 @@ def cleaup_df(df) -> pd.DataFrame:
     df.set_index('experiment ID', inplace=True)
 
     # removing all the nan values from the dataframe
-    df = df.dropna()
-    # Transposing it so make the handsanitizer and coltrol experiments as a column and smaples as a row
+    df = df.dropna(how='all') #removing nan values from the dataframe where every values of the rows is nan
+    
+    # Transposing it so make the handsanitizer and control experiments as a column and samples as a row
     df = df.T
 
     # Calculating the sample mean for each triplicate
@@ -41,14 +42,9 @@ def cleaup_df(df) -> pd.DataFrame:
     df_result['Sample_type'] = df_result['Sample_type'].map(
         {'S': 'Treated', 'C': 'Control'})
 
-    # Calculating following this for creating a error bar
-    sample_size = df_result.shape[0]
-    # calculated standard error of the mean (SEM)
-    df_result['SEM_mean'] = df_result['Std'] / np.sqrt(sample_size)
-    df_result['lower_limit'] = df_result['SEM_mean'] * \
-        0.025  # 95% CI lower limit is 0.025
-    df_result['upper_limit'] = df_result['SEM_mean'] * \
-        0.975  # 95% CI upper limit is 0.097
-    df = df_result.sem('columns', numeric_only=True,)
+    # # Calculating following this for creating a error bar
+    # sample_size = df_result.shape[0]
+    # # calculated standard error of the mean (SEM)
+    # df_result['SEM_mean'] = df_result['Std'] / np.sqrt(sample_size)
 
     return df_result

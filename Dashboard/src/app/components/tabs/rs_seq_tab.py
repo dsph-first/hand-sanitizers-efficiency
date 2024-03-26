@@ -1,4 +1,4 @@
-from dash import dash, html, Input, Output, callback, Patch, clientside_callback, dcc
+from dash import dash, dcc, html, Input, Output, callback, Patch, clientside_callback, dcc
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
@@ -8,25 +8,17 @@ rs_seq_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For 16RS Sequencing Test"),
-                        className="text-center"),
-                # dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="bar_graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
-                # ),
-                # dbc.Col(
-                #     dbc.Card(
-                #         dcc.Graph(
-                #             id="graph",
-                #             figure={},
-                #         )
-                #     ),
-                #     lg=6,
+                html.H4(
+                    ("Sample Distribution For 16RS Sequencing Test"),
+                    className="text-center",
+                ),
+                # dcc.Dropdown(
+                #     id="hand_sanitizer",
+                #     options=[
+                #         {"label": hand_sanitizers, "value": hand_sanitizers}
+                #         for hand_sanitizers in SANITIZERS
+                #     ],
+                #     # value=ConfigInstance.sanitizers[0]
                 # ),
             ]
         ),
@@ -66,6 +58,6 @@ rs_seq_tab = dbc.Tab(
             ]
         ),
     ],
-    label='16rs Sequencing',
-    id='sequencing',
+    label="16rs Sequencing",
+    id="sequencing",
 )
