@@ -8,7 +8,7 @@ rs_seq_tab = dbc.Tab(
     [
         dbc.Row(
             [
-                html.H4(("Sample Distribution For 16RS Sequencing Test"),
+                html.H4(("Sample Distribution For 16S Sequencing"),
                         className="text-center"),
                 # dbc.Col(
                 #     dbc.Card(
@@ -66,6 +66,6 @@ rs_seq_tab = dbc.Tab(
             ]
         ),
     ],
-    label='16rs Sequencing',
+    label='16s Sequencing',
     id='sequencing',
 )
