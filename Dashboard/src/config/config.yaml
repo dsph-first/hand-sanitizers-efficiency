@@ -1,2 +1,3 @@
 data_path: "../data/swab_colony_counts.xlsx"
 supported_sanitizers: ["Sagrotan"]
+questionaries : "../data/Questionaries.xlsx"

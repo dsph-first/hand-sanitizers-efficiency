@@ -84,12 +84,14 @@ if __name__ == "__main__":
     ConfigInstance = Config('./config/config.yaml')
     # read DF
     init_df = ConfigInstance.get_init_df()
+    #
+    init_ques_df = ConfigInstance.get_init_ques_df()
     # read the supported sanitizers list
     supported_sanitizers = ConfigInstance.get_supported_sanitizers()
-
+    print(init_ques_df)
     # create an instance of HandSanitizer Application
     HandSanitizerAppInstance = HandSanitizerApplication(
-        init_df, supported_sanitizers
+        init_df, init_ques_df, supported_sanitizers
     )
     Layout(HandSanitizerAppInstance)
 

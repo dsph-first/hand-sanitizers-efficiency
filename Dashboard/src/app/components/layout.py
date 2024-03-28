@@ -2,6 +2,7 @@ from dash import dash, html, Input, Output, callback, Patch, clientside_callback
 import dash_bootstrap_components as dbc
 
 from app.components.containers.container import controls
+from app.modules.questionaries import map_ratings_to_scale
 
 global bar_codes
 bar_codes = ["barcode1", "barcode 2"]
@@ -315,7 +316,8 @@ class Layout:
         self._user_perceptions_tab = dbc.Tab(
             [   
                 dbc.Row(
-                    [
+                    [   
+                        data = self._app.get_ques_df(), 
                         html.H4(
                             ("Sample Distribution For User Perception Test"),
                             className="text-center",

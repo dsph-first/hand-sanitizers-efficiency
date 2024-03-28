@@ -13,13 +13,15 @@ DBC_CSS = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2
 
 
 class HandSanitizerApplication:
-    def __init__(self, init_df, supported_sanitizers) -> None:
+    def __init__(self, init_df, init_ques_df,supported_sanitizers) -> None:
 
         self.dash_app = dash.Dash(__name__, external_stylesheets=[
             dbc.themes.BOOTSTRAP, (DBC_CSS)], assets_folder = assets_path
         )
 
         self._df = self.__init_df(init_df)
+        self._ques_df = self.__init_df(init_ques_df)
+
 
         self._hand_sanitizers = supported_sanitizers
 
@@ -33,9 +35,12 @@ class HandSanitizerApplication:
 
     def get_df(self) -> pd.DataFrame:
         return self._df
-
+    def get_ques_df(self) -> pd.DataFrame:
+        return self._ques_df
     def set_df(self, new_df):
         self._df = new_df
+    def set_ques_df(self, ques_df):
+        self._ques_df = ques_df
 
     def get_df_for(self, sanitizer_name) -> pd.DataFrame:
         if self.__is_sanitizer_exists(sanitizer_name) != True:
@@ -68,6 +73,8 @@ class HandSanitizerApplication:
 
     def __init_df(self, new_df) -> pd.DataFrame:
         return cleaup_df(new_df)
+    def __init_df(self, ques_df):
+        return self.set_ques_df(ques_df)
 
     def __is_sanitizer_exists(self, sanitizer_name) -> bool:
         return self._hand_sanitizers[sanitizer_name]
