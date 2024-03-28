@@ -15,9 +15,13 @@ import yaml
 from dash import Dash, html, dcc, Output, Input
 from flask import Flask, send_from_directory
 
+with open("config.yaml", "r") as config_file:
+    config = yaml.load(config_file)
 
 # Directory where the reports are located
-report_dir = "/students/2023-2024/master/hand_sanitizer/krona/reports/"
+report_dir = config["report_dir"]
+html_files_dir = config["html_dir"]
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -26,7 +30,7 @@ app = Flask(__name__)
 @app.route('/<path:filename>')
 def serve_html(filename):
     """Serve HTML files from the specified directory."""
-    html_dir = os.path.join(os.getcwd(), "/students/2023-2024/master/hand_sanitizer")
+    html_dir = os.path.join(os.getcwd(), html_dir)
     return send_from_directory(html_dir, filename)
 
 def generate_options(report_dir):
