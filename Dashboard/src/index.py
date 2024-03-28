@@ -14,10 +14,11 @@ from app.components.divs.p_value import get_p_value_higher_div, get_p_value_less
 
 global HandSanitizerAppInstance
 
-global DF
+# global DF
 
 
 @callback(
+        
     Output("content-container", "children"), [Input("radio-selector", "value")]
 )
 def update_content(selected_option=None):
@@ -42,26 +43,19 @@ def update_content(selected_option=None):
 
 
 @callback(
-    [
+    # [
         Output(component_id="bar_graph", component_property="figure"),
-        Output(component_id="graph", component_property="figure"),
-    ],
+        # Output(component_id="graph", component_property="figure"),
+    # ],
     [Input(component_id="hand_sanitizer", component_property="value")],
 )
 def update(hand_sanitizer):
     print(' ====================== UPDATE ======================')
-    df = pd.DataFrame(
-        {
-            "count": [86.111111, 90.833333, 77.277778, 76.055556],
-            "sample_type": ["Treated", "Control", "Treated", "Control"],
-            "factors": ["HS1", "HS2", "HS2", "HS1"],
-        }
-    )
     fig = px.bar()
     if hand_sanitizer != None:
         df_result = HandSanitizerAppInstance.get_df_for(hand_sanitizer)
         # DF= df_result
-        DF = HandSanitizerAppInstance.check_distribution()
+        # DF = HandSanitizerAppInstance.check_distribution()
         fig = px.bar(
             df_result,
             x="HS",
@@ -81,23 +75,8 @@ def update(hand_sanitizer):
             legend_title="Factors",
         )
 
-    fig_another = px.scatter(
-        df,
-        x="factors",
-        y="count",
-        color="sample_type",
-        labels={"count": "Count"},
-        color_discrete_sequence=["#225ea8", "#41b6c4"],
-    )
 
-    fig_another.update_layout(
-        title="Another Chart",
-        xaxis_title="Hand Sanitizers",
-        yaxis_title="Count",
-        legend_title="Sample Type",
-    )
-
-    return fig, fig_another
+    return fig
 
 
 if __name__ == "__main__":

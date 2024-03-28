@@ -3,6 +3,9 @@ import dash_bootstrap_components as dbc
 
 from app.components.containers.container import controls
 
+global bar_codes
+bar_codes = ["barcode1", "barcode 2"]
+
 
 class Layout:
     def __init__(self, handApplication) -> None:
@@ -11,7 +14,41 @@ class Layout:
 
         handApplication.init_basic_layout(self.get_basic_layout())
 
+        # self.register_callback()
     # ========= Public functions =========
+        
+    # ========= Callbacks =========
+    def barcode1_callback(self):
+        @self._app.dash_app.callback(
+        Output("content-container1", "children"), [Input("bar_code1", "value")]
+       )
+        def update(bar_code1):
+            if bar_code1== "" or bar_code1 == None:
+                     return html.Div()
+
+            if bar_code1!= None:
+                return html.Img(
+                    src= self._app.dash_app.get_asset_url("logo.jpg"),
+                    height="300px",
+                )
+    def barcode2_callback(self):
+        @self._app.dash_app.callback(
+            Output("content-container2", "children"), [Input("bar_code2", "value")]
+        )
+        def update(bar_code2):
+            if bar_code2== "" or bar_code2 == None:
+                     return html.Div()
+
+            if bar_code2!= None:
+                    
+                return html.Img(
+                    src= self._app.dash_app.get_asset_url("lab_pics.jpg"),
+                    height="300px",
+                )
+            
+
+# ========= Public functions =========
+
 
     def show_statistics(self):
         pass
@@ -34,10 +71,17 @@ class Layout:
                             width=3,
                         ),
                         dbc.Col(
-                            dbc.Card(dbc.Tabs([self.__get_counting_colony_tab(), self.__get_disk_diffusion_tab(),self.__get_rs_seq_tab(),self.__get_user_perceptions_tab()])),
-     
+                            dbc.Card(
+                                dbc.Tabs(
+                                    [
+                                        self.__get_counting_colony_tab(),
+                                        self.__get_disk_diffusion_tab(),
+                                        self.__get_rs_seq_tab(),
+                                        self.__get_user_perceptions_tab(),
+                                    ]
+                                )
+                            ),
                             width=8,
-                         
                         ),
                     ]
                 ),
@@ -84,35 +128,76 @@ class Layout:
             [
                 dbc.Row(
                     [
-                        html.H4(
-                            ("Sample Distribution For counting colony Test"),
-                            className="text-center",
+                        dbc.Col(
+                            dbc.Row(
+                                [
+                                    html.H4(
+                                        ("Fingertip Experiment Results"),
+                                        className="text-center",
+                                    ),
+                                    dbc.Card(
+                                        [
+                                            dcc.Graph(
+                                                id="bar_graph",
+                                                figure={},
+                                                # className="h-100",
+                                            ),
+                                        ]
+                                    ),
+                                ]
+                            ),
+                            # lg=6,
                         ),
                         dbc.Col(
-                            dbc.Card(
-                                dcc.Graph(
-                                    id="bar_graph",
-                                    figure={},
-                                )
-                            ),
-                            lg=6,
-                        ),
-                        dbc.Col(
-                            dbc.Card(
-                                dcc.Graph(
-                                    id="graph",
-                                    figure={},
-                                )
-                               
-                            ),
-                            lg=6,
+                            dbc.Row(
+                                [
+                                    html.H4(
+                                        "Pictures of growing colonies",
+                                        className="text-center",
+                                    ),
+                                    dbc.Col(
+                                        dbc.Card(
+                                            [
+                                                html.H4(
+                                                    "Control",
+                                                    className="card-title",
+                                                ),
+                                                html.Img(
+                                                    src=self._app.dash_app.get_asset_url(
+                                                        "lab_pic_control.jpg"
+                                                    ),
+                                                    height="400px",
+                                                ),
+                                            ]
+                                        ),
+                                        lg=6,
+                                    ),
+                                    dbc.Col(
+                                        dbc.Card(
+                                            [
+                                                html.H4(
+                                                    "Hand sanitizer",
+                                                    className="card-title",
+                                                ),
+                                                html.Img(
+                                                    src=self._app.dash_app.get_asset_url(
+                                                        "lab_pic_handsanitizer.jpg"
+                                                    ),
+                                                    height="400px",
+                                                ),
+                                            ]
+                                        ),
+                                        lg=6,
+                                    ),
+                                ]
+                            )
                         ),
                     ]
                 ),
                 dbc.Row(
                     [
+                        html.Br(),
                         html.H4(("Statistical Analysis"), className="text-center"),
-                        
                         dbc.Row(
                             [
                                 dbc.Row(
@@ -122,9 +207,9 @@ class Layout:
                                             options=[
                                                 {
                                                     "label": [
-                                                        html.Span('Mann-Whitney U')
+                                                        html.Span("Mann-Whitney U")
                                                     ],
-                                                    "value": 'Mann-Whitney U',
+                                                    "value": "Mann-Whitney U",
                                                 },
                                             ],
                                             value="",
@@ -181,9 +266,31 @@ class Layout:
             [
                 dbc.Row(
                     [
-                        html.H4(
-                            ("Sample Distribution For 16RS Sequencing Test"),
-                            className="text-center",
+                        dbc.Col(
+                            [   self.barcode1_callback(),
+                                dbc.Label("Select the bar code group 1"),
+                                dcc.Dropdown(
+                                    id="bar_code1",
+                                    options=[
+                                        {"label": bar_code, "value": bar_code}
+                                        for bar_code in bar_codes
+                                    ],
+                                ),
+                                html.Div(id="content-container1"),
+                            ]
+                        ),
+                        dbc.Col(
+                            [   self.barcode2_callback(),
+                                dbc.Label("Select the bar code group 2"),
+                                dcc.Dropdown(
+                                    id="bar_code2",
+                                    options=[
+                                        {"label": bar_code, "value": bar_code}
+                                        for bar_code in bar_codes
+                                    ],
+                                ),
+                                html.Div(id="content-container2"),
+                            ]
                         ),
                     ]
                 ),
@@ -206,7 +313,7 @@ class Layout:
 
     def __get_user_perceptions_tab(self):
         self._user_perceptions_tab = dbc.Tab(
-            [
+            [   
                 dbc.Row(
                     [
                         html.H4(
@@ -232,3 +339,5 @@ class Layout:
             id="user_perception",
         )
         return self._user_perceptions_tab
+
+
