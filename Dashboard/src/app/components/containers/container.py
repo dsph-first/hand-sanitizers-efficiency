@@ -47,7 +47,6 @@ hs_dropdown = html.Div(
                 {"label": hand_sanitizers, "value": hand_sanitizers}
                 for hand_sanitizers in SANITIZERS
             ],
-            # value=ConfigInstance.sanitizers[0]
         ),
     ]
 )
