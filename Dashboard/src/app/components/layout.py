@@ -1,11 +1,7 @@
 from dash import dash, html, Input, Output, callback, Patch, clientside_callback, dcc
 import dash_bootstrap_components as dbc
 
-import app.components.nav_bars.navigation_bar as navig_bar
 from app.components.containers.container import controls
-
-# Tabs
-from app.components.tabs.basic_tabs import tabs
 
 
 class Layout:
@@ -38,10 +34,10 @@ class Layout:
                             width=3,
                         ),
                         dbc.Col(
-                            [
-                                tabs
-                            ], width=8,
-                            # fluid=True,
+                            dbc.Card(dbc.Tabs([self.__get_counting_colony_tab(), self.__get_disk_diffusion_tab(),self.__get_rs_seq_tab(),self.__get_user_perceptions_tab()])),
+     
+                            width=8,
+                         
                         ),
                     ]
                 ),
@@ -51,19 +47,23 @@ class Layout:
         )
 
     def __get_navigation_bar(self):
-        print('ASSET PATH: ', self._app.get_asset_url())
         self._navigation_bar = dbc.Navbar(
             dbc.Container(
                 [
                     dbc.Row(
                         [
                             dbc.Col(
-                                html.Img(src=self._app.get_asset_url(), height='30px')),
-                            dbc.Col(dbc.NavbarBrand(
-                                'HandSanitizer', className='mr-auto')),
+                                html.Img(
+                                    src=self._app.dash_app.get_asset_url("logo.jpg"),
+                                    height="30px",
+                                )
+                            ),
+                            dbc.Col(
+                                dbc.NavbarBrand("HandSanitizer", className="mr-auto")
+                            ),
                         ],
-                        align='center',
-                        className='g-0',
+                        align="center",
+                        className="g-0",
                     ),
                     dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
                     dbc.Collapse(
@@ -72,9 +72,163 @@ class Layout:
                         navbar=True,
                     ),
                 ],
-                fluid=True
+                fluid=True,
             ),
             color="dark",
             dark=True,
         )
         return self._navigation_bar
+
+    def __get_counting_colony_tab(self):
+        self._counting_colony_tab = dbc.Tab(
+            [
+                dbc.Row(
+                    [
+                        html.H4(
+                            ("Sample Distribution For counting colony Test"),
+                            className="text-center",
+                        ),
+                        dbc.Col(
+                            dbc.Card(
+                                dcc.Graph(
+                                    id="bar_graph",
+                                    figure={},
+                                )
+                            ),
+                            lg=6,
+                        ),
+                        dbc.Col(
+                            dbc.Card(
+                                dcc.Graph(
+                                    id="graph",
+                                    figure={},
+                                )
+                               
+                            ),
+                            lg=6,
+                        ),
+                    ]
+                ),
+                dbc.Row(
+                    [
+                        html.H4(("Statistical Analysis"), className="text-center"),
+                        
+                        dbc.Row(
+                            [
+                                dbc.Row(
+                                    [
+                                        dcc.RadioItems(
+                                            id="radio-selector",
+                                            options=[
+                                                {
+                                                    "label": [
+                                                        html.Span('Mann-Whitney U')
+                                                    ],
+                                                    "value": 'Mann-Whitney U',
+                                                },
+                                            ],
+                                            value="",
+                                            inline=True,
+                                        )
+                                    ]
+                                ),
+                                dbc.Row(
+                                    [
+                                        html.Br(),
+                                        html.Div(id="content-container"),
+                                        html.Br(),
+                                    ]
+                                ),
+                            ]
+                        ),
+                    ]
+                ),
+            ],
+            label="Counting Colony",
+        )
+        return self._counting_colony_tab
+
+    def __get_disk_diffusion_tab(self):
+        self._disk_diffusion_tab = dbc.Tab(
+            [
+                dbc.Row(
+                    [
+                        html.H4(
+                            ("Sample Distribution For disk Diffusion Test"),
+                            className="text-center",
+                        ),
+                        dbc.Col(),
+                    ]
+                ),
+                dbc.Row(
+                    [
+                        html.H4(("Statistical Analysis"), className="text-center"),
+                        dbc.Row(
+                            [
+                                dbc.Row([]),
+                                dbc.Row([]),
+                            ]
+                        ),
+                    ]
+                ),
+            ],
+            label="Disk Diffusion Test",
+        )
+        return self._disk_diffusion_tab
+
+    def __get_rs_seq_tab(self):
+        self._rs_seq_tab = dbc.Tab(
+            [
+                dbc.Row(
+                    [
+                        html.H4(
+                            ("Sample Distribution For 16RS Sequencing Test"),
+                            className="text-center",
+                        ),
+                    ]
+                ),
+                dbc.Row(
+                    [
+                        html.H4(("Statistical Analysis"), className="text-center"),
+                        dbc.Row(
+                            [
+                                dbc.Row([]),
+                                dbc.Row([]),
+                            ]
+                        ),
+                    ]
+                ),
+            ],
+            label="16rs Sequencing",
+            id="sequencing",
+        )
+        return self._rs_seq_tab
+
+    def __get_user_perceptions_tab(self):
+        self._user_perceptions_tab = dbc.Tab(
+            [
+                dbc.Row(
+                    [
+                        html.H4(
+                            ("Sample Distribution For User Perception Test"),
+                            className="text-center",
+                        ),
+                        dbc.Col(),
+                    ]
+                ),
+                dbc.Row(
+                    [
+                        html.H4(("Statistical Analysis"), className="text-center"),
+                        dbc.Row(
+                            [
+                                dbc.Row([]),
+                                dbc.Row([]),
+                            ]
+                        ),
+                    ]
+                ),
+            ],
+            label="User perception",
+            id="user_perception",
+        )
+        return self._user_perceptions_tab

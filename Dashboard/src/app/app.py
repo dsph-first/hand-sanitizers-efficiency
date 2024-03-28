@@ -7,7 +7,7 @@ from app.modules.data_processing import cleaup_df
 
 import os
 
-assets_path = os.getcwd() + '/public/assets/'
+assets_path= os.getcwd() + '/public/assets'
 
 DBC_CSS = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2/dbc.min.css"
 
@@ -16,7 +16,7 @@ class HandSanitizerApplication:
     def __init__(self, init_df, supported_sanitizers) -> None:
 
         self.dash_app = dash.Dash(__name__, external_stylesheets=[
-            dbc.themes.BOOTSTRAP, (DBC_CSS)], assets_folder=assets_path
+            dbc.themes.BOOTSTRAP, (DBC_CSS)], assets_folder = assets_path
         )
 
         self._df = self.__init_df(init_df)
@@ -30,9 +30,6 @@ class HandSanitizerApplication:
 
     def run(self):
         self.dash_app.run_server(debug=True, use_reloader=True)
-
-    def get_asset_url(self):
-        return assets_path
 
     def get_df(self) -> pd.DataFrame:
         return self._df

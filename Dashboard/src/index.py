@@ -112,7 +112,6 @@ if __name__ == "__main__":
     HandSanitizerAppInstance = HandSanitizerApplication(
         init_df, supported_sanitizers
     )
-
     Layout(HandSanitizerAppInstance)
 
     HandSanitizerAppInstance.run()
